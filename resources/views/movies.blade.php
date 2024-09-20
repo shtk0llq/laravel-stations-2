@@ -9,12 +9,12 @@
 </head>
 
 <body>
-  <div>
-    @foreach($movies as $movie)
+  @foreach ($movies as $movie)
+    <div>
       <p>{{ $movie->title }}</p>
       <img src="{{ $movie->image_url }}" alt="Movie Image" />
-    @endforeach
-  </div>
+    </div>
+  @endforeach
 </body>
 
 </html>
