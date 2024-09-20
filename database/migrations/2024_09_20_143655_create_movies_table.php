@@ -17,6 +17,9 @@ class CreateMoviesTable extends Migration
             $table->id();
             $table->text('title');
             $table->text('image_url');
+            $table->integer('published_year');
+            $table->boolean('is_showing')->default(false);
+            $table->text('description');
             $table->timestamps();
         });
     }
