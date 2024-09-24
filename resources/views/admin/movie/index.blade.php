@@ -9,6 +9,12 @@
 </head>
 
 <body>
+  @if (session('success'))
+    <div>
+      {{ session('success') }}
+    </div>
+  @endif
+
   <table>
     <thead>
       <tr>
@@ -17,6 +23,7 @@
         <th>公開年</th>
         <th>上映中かどうか</th>
         <th>概要</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -33,9 +40,18 @@
               <button>編集</button>
             </a>
           </td>
+          <td>
+            <form method="POST" action="{{ route('admin.movies.destroy', ['id' => $movie->id]) }}">
+              @csrf
+              @method('DELETE')
+
+              <button type="button" onclick="deleteMovie(this)">削除</button>
+            </form>
+          </td>
         </tr>
       @endforeach
     </tbody>
+    <script src="{{ asset('/js/app.js') }}"></script>
 </body>
 
 </html>

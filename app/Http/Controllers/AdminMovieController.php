@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateMovieRequest;
 use App\Http\Requests\UpdateMovieRequest;
 use App\Models\Movie;
-use Illuminate\Http\Request;
 
 class AdminMovieController extends Controller
 {
@@ -52,6 +51,17 @@ class AdminMovieController extends Controller
             return redirect(route('admin.movies'));
         } catch (\Exception $e) {
             return back()->withInput()->with('error', 'エラーが発生しました。');
+        }
+    }
+
+    public function destroy(Int $id)
+    {
+        try {
+            Movie::findOrFail($id)->delete();
+
+            return redirect(route('admin.movies'))->with('success', '削除が完了しました。');
+        } catch (\Exception) {
+            return abort(404);
         }
     }
 }
