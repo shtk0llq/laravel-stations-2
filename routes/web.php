@@ -28,6 +28,7 @@ Route::get('/getPractice', [PracticeController::class, 'getPractice']);
 
 // User
 Route::get('/movies', [MovieController::class, 'index'])->name('movies');
+Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
 Route::get('/sheets', [SheetController::class, 'index'])->name('sheets');
 
 // Admin

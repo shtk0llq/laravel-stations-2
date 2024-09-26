@@ -33,7 +33,11 @@
 
   @foreach ($movies as $movie)
     <div>
-      <p>{{ $movie->title }}</p>
+      <p>
+        <a href="{{ route('movies.show', ['id' => $movie->id]) }}">
+          {{ $movie->title }}
+        </a>
+      </p>
       <img src="{{ $movie->image_url }}" alt="Movie Image" />
     </div>
   @endforeach
