@@ -28,6 +28,14 @@
     </div>
 
     <div>
+      <label for="genre">ジャンル</label>
+      <input type="text" name="genre" id="genre" value="{{ old('genre', $movie->genre->name) }}" />
+      @error('genre')
+        <span>{{ $message }}</span>
+      @enderror
+    </div>
+
+    <div>
       <label for="image_url">画像URL</label>
       <input type="text" name="image_url" id="image_url" value="{{ old('image_url', $movie->image_url) }}" />
       @error('image_url')

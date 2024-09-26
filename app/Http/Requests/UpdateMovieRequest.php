@@ -30,6 +30,7 @@ class UpdateMovieRequest extends FormRequest
             'published_year' => ['required', 'gte:1900'],
             'description' => ['required'],
             'is_showing' => ['required', 'boolean'],
+            'genre' => ['required'],
         ];
     }
 
@@ -50,6 +51,7 @@ class UpdateMovieRequest extends FormRequest
             'description.required' => '概要は必須です。',
             'is_showing.required' => '公開中かどうかは必須です。',
             'is_showing.boolean' => '有効な値で入力してください',
+            'genre.required' => 'ジャンルは必須です。',
         ];
     }
 }
