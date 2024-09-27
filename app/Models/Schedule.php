@@ -22,6 +22,7 @@ class Schedule extends Model
     ];
 
     protected $casts = [
+        // Carbon インスタンスに変換
         'start_time' => 'datetime',
         'end_time' => 'datetime',
     ];

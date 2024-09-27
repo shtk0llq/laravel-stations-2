@@ -2103,7 +2103,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   \********************************/
 /***/ (() => {
 
-window.deleteMovie = function (button) {
+window.deleteConfirm = function (button) {
   if (confirm('削除してもよろしいですか？')) {
     button.closest('form').submit();
   }

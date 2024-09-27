@@ -10,7 +10,7 @@
 
 <body>
   @if(session('error'))
-    <div class="p-4 bg-green-100">
+    <div>
       {{ session('error') }}
     </div>
   @endif

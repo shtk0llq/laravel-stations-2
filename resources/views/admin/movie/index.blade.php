@@ -30,7 +30,11 @@
     <tbody>
       @foreach ($movies as $movie)
         <tr>
-          <td>{{ $movie->title }}</td>
+          <td>
+            <a href="{{ route('admin.movies.show', ['id' => $movie->id]) }}">
+              {{ $movie->title }}
+            </a>
+          </td>
           <td>{{ $movie->image_url }}</td>
           <td>{{ $movie->published_year }}</td>
           <td>{{ $movie->is_showing ? '上映中' : '上映予定' }}</td>
@@ -45,7 +49,7 @@
               @csrf
               @method('DELETE')
 
-              <button type="button" onclick="deleteMovie(this)">削除</button>
+              <button type="button" onclick="deleteConfirm(this)">削除</button>
             </form>
           </td>
         </tr>

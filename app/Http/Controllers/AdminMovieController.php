@@ -42,6 +42,13 @@ class AdminMovieController extends Controller
         return redirect(route('admin.movies'));
     }
 
+    public function show(Int $id)
+    {
+        $movie = Movie::with('schedules')->findOrFail($id);
+
+        return view('admin.movie.show', ['movie' => $movie]);
+    }
+
     public function edit(Int $id)
     {
         $movie = Movie::with('genre')->findOrFail($id);

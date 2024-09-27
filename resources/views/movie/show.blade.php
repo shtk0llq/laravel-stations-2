@@ -19,7 +19,7 @@
 
   @foreach($schedules as $schedule)
     <div>
-      <p>{{ $schedule->start_time }} - {{ $schedule->end_time }}</p>
+      <p>{{ $schedule->start_time->format('H:i') }} - {{ $schedule->end_time->format('H:i') }}</p>
     </div>
   @endforeach
 </body>

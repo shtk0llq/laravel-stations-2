@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminMovieController;
+use App\Http\Controllers\AdminScheduleController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\SheetController;
@@ -32,9 +33,20 @@ Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show'
 Route::get('/sheets', [SheetController::class, 'index'])->name('sheets');
 
 // Admin
+// movie
 Route::get('/admin/movies', [AdminMovieController::class, 'index'])->name('admin.movies');
 Route::get('/admin/movies/create', [AdminMovieController::class, 'create'])->name('admin.movies.create');
 Route::post('/admin/movies/store', [AdminMovieController::class, 'store'])->name('admin.movies.store');
+Route::get('/admin/movies/{id}', [AdminMovieController::class, 'show'])->name('admin.movies.show');
 Route::get('/admin/movies/{id}/edit', [AdminMovieController::class, 'edit'])->name('admin.movies.edit');
 Route::patch('/admin/movies/{id}/update', [AdminMovieController::class, 'update'])->name('admin.movies.update');
 Route::delete('/admin/movies/{id}/destroy', [AdminMovieController::class, 'destroy'])->name('admin.movies.destroy');
+
+// schedule
+Route::get('/admin/schedules', [AdminScheduleController::class, 'index'])->name('admin.schedules');
+Route::get('/admin/movies/{id}/schedules/create', [AdminScheduleController::class, 'create'])->name('admin.schedules.create');
+Route::post('/admin/movies/{id}/schedules/store', [AdminScheduleController::class, 'store'])->name('admin.schedules.store');
+Route::get('/admin/schedules/{id}', [AdminScheduleController::class, 'show'])->name('admin.schedules.show');
+Route::get('/admin/schedules/{id}/edit', [AdminScheduleController::class, 'edit'])->name('admin.schedules.edit');
+Route::patch('/admin/schedules/{id}/update', [AdminScheduleController::class, 'update'])->name('admin.schedules.update');
+Route::delete('/admin/schedules/{id}/destroy', [AdminScheduleController::class, 'destroy'])->name('admin.schedules.destroy');
