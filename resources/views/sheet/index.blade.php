@@ -27,12 +27,12 @@
           @foreach ($rows as $item)
             <td>
               <a
-                href="{{ route('movies.schedules.reservations.create', [
+                @if (!$item->is_reserved) href="{{ route('movies.schedules.reservations.create', [
                     'movie_id' => $movieId,
                     'schedule_id' => $scheduleId,
                     'date' => request()->query('date'),
                     'sheetId' => $item->id,
-                ]) }}">
+                ]) }}" @endif>
                 {{ $item->row }}-{{ $item->column }}
               </a>
             </td>

@@ -6,12 +6,25 @@ use App\Http\Requests\CreateReservationRequest;
 use App\Models\Reservation;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class ReservationController extends Controller
 {
     public function create(Request $request, Int $movie_id, Int $schedule_id)
     {
         if (empty($request->query('date')) || empty($request->query('sheetId'))) {
+            return abort(400);
+        }
+
+        // 日付+時間で入ってきた時に日付のみに変換する
+        $requestDate = Carbon::parse($request->query('date'))->toDateString();
+
+        $isReserved = Reservation::where('schedule_id', $schedule_id)
+            ->where('sheet_id', $request->query('sheetId'))
+            ->whereDate("date", $requestDate)
+            ->exists();
+
+        if ($isReserved) {
             return abort(400);
         }
 
