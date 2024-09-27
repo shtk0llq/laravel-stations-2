@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminMovieController;
 use App\Http\Controllers\AdminScheduleController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PracticeController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SheetController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,17 @@ Route::get('/practice3', [PracticeController::class, 'sample3']);
 Route::get('/getPractice', [PracticeController::class, 'getPractice']);
 
 // User
+// movie
 Route::get('/movies', [MovieController::class, 'index'])->name('movies');
 Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
-Route::get('/sheets', [SheetController::class, 'index'])->name('sheets');
+
+// sheet
+Route::get('/sheets', [SheetController::class, 'list'])->name('sheets');
+Route::get('/movies/{movie_id}/schedules/{schedule_id}/sheets', [SheetController::class, 'index'])->name('movies.schedules.sheets');
+
+// reservation
+Route::get('/movies/{movie_id}/schedules/{schedule_id}/reservations/create', [ReservationController::class, 'create'])->name('movies.schedules.reservations.create');
+Route::post('/reservations/store', [ReservationController::class, 'store'])->name('reservations.store');
 
 // Admin
 // movie

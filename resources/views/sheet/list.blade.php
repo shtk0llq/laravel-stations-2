@@ -9,12 +9,6 @@
 </head>
 
 <body>
-  @if (session('error'))
-    <div>
-      {{ session('error') }}
-    </div>
-  @endif
-
   <table>
     <thead>
       <tr>
@@ -26,15 +20,7 @@
         <tr>
           @foreach ($rows as $item)
             <td>
-              <a
-                href="{{ route('movies.schedules.reservations.create', [
-                    'movie_id' => $movieId,
-                    'schedule_id' => $scheduleId,
-                    'date' => request()->query('date'),
-                    'sheetId' => $item->id,
-                ]) }}">
-                {{ $item->row }}-{{ $item->column }}
-              </a>
+              {{ $item->row }}-{{ $item->column }}
             </td>
           @endforeach
         </tr>
