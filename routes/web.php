@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminMovieController;
+use App\Http\Controllers\AdminReservationController;
 use App\Http\Controllers\AdminScheduleController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PracticeController;
@@ -59,3 +60,11 @@ Route::get('/admin/schedules/{id}', [AdminScheduleController::class, 'show'])->n
 Route::get('/admin/schedules/{id}/edit', [AdminScheduleController::class, 'edit'])->name('admin.schedules.edit');
 Route::patch('/admin/schedules/{id}/update', [AdminScheduleController::class, 'update'])->name('admin.schedules.update');
 Route::delete('/admin/schedules/{id}/destroy', [AdminScheduleController::class, 'destroy'])->name('admin.schedules.destroy');
+
+// reservation
+Route::get('/admin/reservations', [AdminReservationController::class, 'index'])->name('admin.reservations');
+Route::get('/admin/reservations/create', [AdminReservationController::class, 'create'])->name('admin.reservations.create');
+Route::post('/admin/reservations', [AdminReservationController::class, 'store'])->name('admin.reservations.store');
+Route::get('/admin/reservations/{id}/edit', [AdminReservationController::class, 'edit'])->name('admin.reservations.edit');
+Route::patch('/admin/reservations/{id}', [AdminReservationController::class, 'update'])->name('admin.reservations.update');
+Route::delete('/admin/reservations/{id}', [AdminReservationController::class, 'destroy'])->name('admin.reservations.destroy');
