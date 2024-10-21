@@ -66,6 +66,7 @@ class CreateScheduleRequest extends FormRequest
                     }
                 },
             ],
+            'screen_id' => ['required'],
         ];
     }
 
@@ -85,6 +86,7 @@ class CreateScheduleRequest extends FormRequest
             'end_time_date.after_or_equal' => '終了日付は開始日付より後、または開始日付と同じ日付でなければなりません。',
             'end_time_time.required' => '終了時間は必須です。',
             'end_time_time.after' => '終了時間は開始時間より後でなければなりません。',
+            'screen_id.required' => 'スクリーンIDは必須です。'
         ];
     }
 }

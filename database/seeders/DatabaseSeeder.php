@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             SheetTableSeeder::class,
+            ScreenSeeder::class,
         ]);
 
         Practice::factory(10)->create();

@@ -33,6 +33,7 @@ class AdminScheduleController extends Controller
                 'movie_id' => $input['movie_id'],
                 'start_time' => $startTime,
                 'end_time' => $endTime,
+                'screen_id' => $input['screen_id']
             ]);
         } catch (\Exception $e) {
             return back()->withInput()->with('error', 'エラーが発生しました。');

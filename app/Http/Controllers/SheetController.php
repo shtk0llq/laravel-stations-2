@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Models\Schedule;
 use App\Models\Sheet;
 use Illuminate\Http\Request;
 
@@ -29,11 +30,17 @@ class SheetController extends Controller
 
         $sheets = Sheet::all();
 
+        // 現在のスケジュールのscreen_idを取得
+        $currentScreenId = Schedule::findOrFail($schedule_id)->screen_id;
+
+        // 予約済みのシートIDを取得する際に、同じscreen_idのものだけを対象にする
         $reservedSheetIds = Reservation::query()
-            ->where("schedule_id", $schedule_id)
-            ->orWhere("date", $date)
-            ->orWhere("is_canceled", 0)
-            ->pluck("sheet_id")
+            ->join('schedules', 'reservations.schedule_id', '=', 'schedules.id')
+            ->where('schedules.screen_id', $currentScreenId)
+            ->where('reservations.schedule_id', $schedule_id)
+            ->where('reservations.date', $date)
+            ->where('reservations.is_canceled', 0)
+            ->pluck('reservations.sheet_id')
             ->toArray();
 
         for ($i = 0; $i < count($sheets); $i += 5) {

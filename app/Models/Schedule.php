@@ -16,6 +16,11 @@ class Schedule extends Model
         return $this->belongsTo(Movie::class);
     }
 
+    public function screen(): BelongsTo
+    {
+        return $this->belongsTo(Screen::class);
+    }
+
     public function reservations(): HasMany
     {
         return $this->hasMany(Reservation::class);
@@ -25,6 +30,7 @@ class Schedule extends Model
         'movie_id',
         'start_time',
         'end_time',
+        'screen_id',
     ];
 
     protected $casts = [

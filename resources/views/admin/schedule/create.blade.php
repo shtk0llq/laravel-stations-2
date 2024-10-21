@@ -21,6 +21,14 @@
     <input type="text" name="movie_id" value="{{ $id }}" hidden />
 
     <div>
+      <label for="screen_id">スクリーン ID</label>
+      <input type="text" name="screen_id" id="screen_id" value="{{ old('screen_id') }}" />
+      @error('screen_id')
+        <span>{{ $message }}</span>
+      @enderror
+    </div>
+
+    <div>
       <label for="start_time_date">開始日付</label>
       <input type="date" name="start_time_date" id="start_time_date" value="{{ old('start_time_date') }}" />
       @error('start_time_date')
