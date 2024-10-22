@@ -7,11 +7,14 @@ use App\Models\Reservation;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
     public function create(Request $request, Int $movie_id, Int $schedule_id)
     {
+        $user = Auth::user();
+
         if (empty($request->query('date')) || empty($request->query('sheetId'))) {
             return abort(400);
         }
@@ -28,7 +31,7 @@ class ReservationController extends Controller
             return abort(400);
         }
 
-        return view('reservation.create', ['movieId' => $movie_id, 'scheduleId' => $schedule_id]);
+        return view('reservation.create', ['movieId' => $movie_id, 'scheduleId' => $schedule_id, 'user_id' => $user->id, 'name' => $user->name, 'email' => $user->email]);
     }
 
     public function store(CreateReservationRequest $request)
@@ -40,6 +43,7 @@ class ReservationController extends Controller
 
             Reservation::create($input);
         } catch (\Exception $e) {
+            dd($e);
             return redirect(route('movies.schedules.sheets', ['movie_id' => $movieId, 'schedule_id' => $request->input('schedule_id'), 'date' => $request->input('date')]))->with('error', 'その座席はすでに予約済みです');
 
             // return back()->withInput()->with('error', 'エラーが発生しました。');

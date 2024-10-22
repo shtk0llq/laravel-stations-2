@@ -12,6 +12,7 @@
   <form method="POST" action="{{ route('reservations.store') }}">
     @csrf
 
+    <input type="text" name="user_id" value="{{ $user_id }}" hidden />
     <input type="text" name="schedule_id" value="{{ $scheduleId }}" hidden />
     <input type="text" name="sheet_id" value="{{ request()->query('sheetId') }}" hidden />
     <input type="date" name="date" value="{{ request()->query('date') }}" hidden />
@@ -23,7 +24,7 @@
 
     <div>
       <label for="name">予約者名</label>
-      <input type="text" name="name" id="name" value="{{ old('name') }}" />
+      <input type="text" id="name" value="{{ old('name', $name) }}" disabled />
       @error('name')
         <span>{{ $message }}</span>
       @enderror
@@ -31,7 +32,7 @@
 
     <div>
       <label for="email">メールアドレス</label>
-      <input type="email" name="email" id="email" value="{{ old('email') }}" />
+      <input type="email" id="email" value="{{ old('email', $email) }}" disabled />
       @error('email')
         <span>{{ $message }}</span>
       @enderror

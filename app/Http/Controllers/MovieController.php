@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MovieController extends Controller
 {
@@ -23,6 +24,13 @@ class MovieController extends Controller
                 });
             })
             ->paginate(20);
+
+        // 作品データの変数名は、 view に渡している変数名と合わせて適宜変更してください
+        // $movies = DB::table('movies')->whereRaw("title = '{$request->input('keyword')}'")->paginate();
+
+        // $movies = DB::table('movies')->whereRaw("title = ?", [$request->input('keyword')])->paginate();
+
+        // dd($movies);
 
         return view('movie.index', ['movies' => $movies]);
     }

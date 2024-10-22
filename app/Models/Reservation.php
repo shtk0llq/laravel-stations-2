@@ -24,7 +24,6 @@ class Reservation extends Model
         'date',
         'schedule_id',
         'sheet_id',
-        'email',
-        'name',
+        'user_id',
     ];
 }

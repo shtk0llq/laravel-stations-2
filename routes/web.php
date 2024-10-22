@@ -24,6 +24,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
+
+Route::middleware('auth')->group(function () {
+    // sheet
+    Route::get('/sheets', [SheetController::class, 'list'])->name('sheets');
+    Route::get('/movies/{movie_id}/schedules/{schedule_id}/sheets', [SheetController::class, 'index'])->name('movies.schedules.sheets');
+
+    // reservation
+    Route::get('/movies/{movie_id}/schedules/{schedule_id}/reservations/create', [ReservationController::class, 'create'])->name('movies.schedules.reservations.create');
+    Route::post('/reservations/store', [ReservationController::class, 'store'])->name('reservations.store');
+});
+
 Route::get('/practice', [PracticeController::class, 'sample']);
 Route::get('/practice2', [PracticeController::class, 'sample2']);
 Route::get('/practice3', [PracticeController::class, 'sample3']);
@@ -33,14 +49,6 @@ Route::get('/getPractice', [PracticeController::class, 'getPractice']);
 // movie
 Route::get('/movies', [MovieController::class, 'index'])->name('movies');
 Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
-
-// sheet
-Route::get('/sheets', [SheetController::class, 'list'])->name('sheets');
-Route::get('/movies/{movie_id}/schedules/{schedule_id}/sheets', [SheetController::class, 'index'])->name('movies.schedules.sheets');
-
-// reservation
-Route::get('/movies/{movie_id}/schedules/{schedule_id}/reservations/create', [ReservationController::class, 'create'])->name('movies.schedules.reservations.create');
-Route::post('/reservations/store', [ReservationController::class, 'store'])->name('reservations.store');
 
 // Admin
 // movie
